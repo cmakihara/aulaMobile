@@ -1,6 +1,7 @@
 package com.aulamobile.aulamobile;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.RecycleViewHol
     private List<Tarefa> mList;
     private Context mContext;
     private  MainActivity activity;
+    private AppCompatImageView fabRemove;
 
     public ListAdapter(Context context, List<Tarefa> list) {
         this.mContext = context;
@@ -44,12 +46,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.RecycleViewHol
             extends RecyclerView.ViewHolder {
 
         protected TextView tvTarefa;
-        protected LinearLayout llRow;
+        protected AppCompatImageView llRow;
 
         public RecycleViewHolder(View itemView) {
             super(itemView);
             tvTarefa = itemView.findViewById(R.id.tv_tarefa);
-            llRow = itemView.findViewById(R.id.llRow);
+            llRow = itemView.findViewById(R.id.fabRemove);
             llRow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

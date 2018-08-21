@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         list = new LinkedList<>();
         for (int i = 0; i < 30; i++){
             list.add(new Tarefa("Tarefa " + i));
+
+
         }
 
         adapter = new ListAdapter(this, list);
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
 
     }
+
 
 
     private void getElements() {

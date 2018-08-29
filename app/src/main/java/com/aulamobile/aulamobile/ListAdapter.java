@@ -37,6 +37,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.RecycleViewHol
         holder.tvTarefa.setText(tarefa.getTarefa());
     }
 
+
     @Override
     public int getItemCount() {
         return mList.size();

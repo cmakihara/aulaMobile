@@ -1,6 +1,7 @@
 package com.aulamobile.aulamobile;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvList;
     private LinkedList<Tarefa> list;
     private ListAdapter adapter;
+    private JSONArray array = new JSONArray();
+    private JSONObject obj;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +39,17 @@ public class MainActivity extends AppCompatActivity {
         this.rvList = findViewById(R.id.rvList);
         this.fabAdd = findViewById(R.id.fabAdd);
 
+
         getElements();
         createActions();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         this.rvList.setLayoutManager(linearLayoutManager);
 
-        
+
         list = new LinkedList<>();
-        for (int i = 0; i < 30; i++){
-            list.add(new Tarefa("Tarefa " + i));
 
 
-        }
 
         adapter = new ListAdapter(this, list);
         rvList.setAdapter(adapter);
@@ -74,6 +80,28 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int i) {
                         Tarefa tarefa = new Tarefa(etTask.getText().toString());
                         list.add(tarefa);
+
+
+                        obj = new JSONObject();
+
+                        try {
+                            obj.put("nome", tarefa.getTarefa());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+
+                        array.put(obj);
+
+                        String arrayStr = array.toString();
+
+                        SharedPreferences sharedPreferences = getSharedPreferences(String.valueOf(tarefa), MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        editor.putString("tarefa", arrayStr).commit();
+
                         adapter.notifyDataSetChanged();
                         Toast.makeText(getApplicationContext(), "Salvou", Toast.LENGTH_SHORT).show();
                     }

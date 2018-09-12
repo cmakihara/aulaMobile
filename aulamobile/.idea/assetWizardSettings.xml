@@ -14,8 +14,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_logout" />
-                            <entry key="sourceFile" value="D:\Users\cmakihara2\Downloads\logout.svg" />
+                            <entry key="outputName" value="ic_app_login" />
+                            <entry key="sourceFile" value="D:\Users\dgiomo.UNIVEL\Downloads\app_login.svg" />
                           </map>
                         </option>
                       </PersistentState>

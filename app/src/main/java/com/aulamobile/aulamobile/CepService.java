@@ -6,10 +6,8 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface IGitService  {
+public interface CepService {
 
     @GET("users/{user}/repos")
-    Call<List<Repo>> listRepos(@Path("user") String user);
-
+    Call<Cep> cepDados(@Path("user") String user);
 }
-

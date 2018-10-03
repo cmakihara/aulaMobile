@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitUtil  {
 
     public static Retrofit build(){
-        return new Retrofit.Builder().baseUrl("https://api.github.com/")
+        return new Retrofit.Builder().baseUrl("https://viacep.com.br/ws/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();

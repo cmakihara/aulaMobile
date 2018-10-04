@@ -1,7 +1,9 @@
 package com.aulamobile.aulamobile;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.List;
@@ -12,33 +14,67 @@ import retrofit2.Response;
 
 public class CepActivity extends AppCompatActivity {
 
+    CepService service;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cep);
 
-        CepService service = RetrofitUtil.build().create(CepService.class);
+        service = RetrofitUtil.build().create(CepService.class);
 
-        Call<Cep> callBack = service.cepDados("85810220/json");
-
-        callBack.enqueue(new Callback<Cep>() {
-
+        Button btBuscaCep = findViewById(R.id.btBuscaCep);
+        btBuscaCep.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<Cep> call, Response<Cep> response) {
-                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
-                Cep cep = response.body();
-                setCep(cep);
-            }
+            public void onClick(View v) {
+                Cep cep = new Cep();
+                EditText campoCep = findViewById(R.id.etCep);
+                cep.setCep(campoCep.getText().toString());
+                Call<Cep> callBack = service.cepDados(cep.getCep());
 
-            @Override
-            public void onFailure(Call<Cep> call, Throwable t) {
+                callBack.enqueue(new Callback<Cep>() {
+
+                    @Override
+                    public void onResponse(Call<Cep> call, Response<Cep> response) {
+                        //   Toast.makeText(getApplicationContext(), response.body().getBairro(), Toast.LENGTH_LONG).show();
+                        Cep cep = response.body();
+                        setCep(cep);
+                    }
+
+                    @Override
+                    public void onFailure(Call<Cep> call, Throwable t) {
+
+                    }
+                });
+
 
             }
         });
+
+
     }
 
     private void setCep(Cep cep) {
-        //Toast.makeText(getApplicationContext(), cep.getBairro(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), cep.getBairro(), Toast.LENGTH_SHORT).show();
+
+        EditText campoRua  = findViewById(R.id.etLogradouro);
+        campoRua.setText(cep.getLogradouro());
+
+        EditText campoComplemento = findViewById(R.id.etComplemento);
+        campoComplemento.setText(cep.getComplemento());
+
+        EditText campoBairro = findViewById(R.id.etBairro);
+        campoBairro.setText(cep.getBairro());
+
+        EditText campoLocalidade = findViewById(R.id.etLocalidade);
+        campoLocalidade.setText(cep.getLocalidade());
+
+        EditText campoUf = findViewById(R.id.etUf);
+        campoUf.setText(cep.getUf());
+
+        EditText campoIbge = findViewById(R.id.etIbge);
+        campoIbge.setText(cep.getIbge());
+
 
 
     }

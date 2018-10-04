@@ -8,6 +8,6 @@ import retrofit2.http.Path;
 
 public interface CepService {
 
-    @GET("users/{user}/repos")
-    Call<Cep> cepDados(@Path("user") String user);
+    @GET("{cep}/json")
+    Call<Cep> cepDados(@Path("cep") String user);
 }

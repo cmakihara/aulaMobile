@@ -4,8 +4,12 @@ package com.aulamobile.tela;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.aulamobile.aulamobile.R;
 import com.aulamobile.aulamobile.RetrofitUtil;
@@ -29,23 +33,33 @@ public class GitHubActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listView);
 
-        IGitService service = RetrofitUtil.buildGitHub().create(IGitService.class);
-
-        Call<List<Repo>> listCallBack = service.listRepos("cmakihara");
-
-        listCallBack.enqueue(new Callback<List<Repo>>() {
+        Button buttonRepo = findViewById(R.id.btRepo);
+        buttonRepo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-                List<Repo> repos = response.body();
-                setListView(repos);
-            }
+            public void onClick(View v) {
+                IGitService service = RetrofitUtil.buildGitHub().create(IGitService.class);
+                EditText campoRepoName = findViewById(R.id.etRepoName);
 
-            @Override
-            public void onFailure(Call<List<Repo>> call, Throwable t) {
+                Call<List<Repo>> listCallBack = service.listRepos(campoRepoName.getText().toString());
+                listCallBack.enqueue(new Callback<List<Repo>>() {
+                    @Override
+                    public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
+                        List<Repo> repos = response.body();
 
+                        if(repos != null){
+                            setListView(repos);
+                        }else {
+                            Toast.makeText(getApplicationContext(), "Repositorio invalido", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Repo>> call, Throwable t) {
+
+                    }
+                });
             }
         });
-
     }
 
     public  void setListView(List<Repo> list){
@@ -55,15 +69,10 @@ public class GitHubActivity extends AppCompatActivity {
             for (int i = 0; i < list.size(); i++){
                 values[i] = list.get(i).getName();
             }
-
             ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, values);
-
             listView.setAdapter(adapter);
         }
 
-//        for(Repo repo: list){
-//            Toast.makeText(getApplicationContext(), repo.getName(), Toast.LENGTH_SHORT).show();
-//        }
     }
 
 }

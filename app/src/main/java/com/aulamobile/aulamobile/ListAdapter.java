@@ -8,13 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.aulamobile.entity.Tarefa;
+import com.aulamobile.tela.MainActivity;
+
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.RecycleViewHolder> {
 
     private List<Tarefa> mList;
     private Context mContext;
-    private  MainActivity activity;
+    private MainActivity activity;
     private AppCompatImageView fabRemove;
 
     public ListAdapter(Context context, List<Tarefa> list) {

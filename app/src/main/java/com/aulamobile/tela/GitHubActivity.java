@@ -1,4 +1,4 @@
-package com.aulamobile.aulamobile;
+package com.aulamobile.tela;
 
 
 import android.os.Bundle;
@@ -6,7 +6,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.aulamobile.aulamobile.R;
+import com.aulamobile.aulamobile.RetrofitUtil;
+import com.aulamobile.service.IGitService;
+import com.aulamobile.entity.Repo;
 
 import java.util.List;
 
@@ -25,9 +29,9 @@ public class GitHubActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listView);
 
-        IGitService service = RetrofitUtil.build().create(IGitService.class);
+        IGitService service = RetrofitUtil.buildGitHub().create(IGitService.class);
 
-        Call<List<Repo>> listCallBack = service.listRepos("DhonatanWesley");
+        Call<List<Repo>> listCallBack = service.listRepos("cmakihara");
 
         listCallBack.enqueue(new Callback<List<Repo>>() {
             @Override

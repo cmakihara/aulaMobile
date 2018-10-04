@@ -6,8 +6,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitUtil  {
 
-    public static Retrofit build(){
+    public static Retrofit buildCep(){
         return new Retrofit.Builder().baseUrl("https://viacep.com.br/ws/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+    }
+
+    public static Retrofit buildGitHub(){
+        return new Retrofit.Builder().baseUrl("https://api.github.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();

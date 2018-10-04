@@ -1,6 +1,6 @@
-package com.aulamobile.aulamobile;
+package com.aulamobile.service;
 
-import java.util.List;
+import com.aulamobile.entity.Cep;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

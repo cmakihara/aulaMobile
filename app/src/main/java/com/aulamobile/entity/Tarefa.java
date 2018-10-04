@@ -1,4 +1,4 @@
-package com.aulamobile.aulamobile;
+package com.aulamobile.entity;
 
 public class Tarefa {
 

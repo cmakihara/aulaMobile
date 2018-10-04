@@ -1,4 +1,4 @@
-package com.aulamobile.aulamobile;
+package com.aulamobile.tela;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,20 +10,22 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.aulamobile.aulamobile.ListAdapter;
+import com.aulamobile.aulamobile.LoginUtil;
+import com.aulamobile.aulamobile.R;
+import com.aulamobile.entity.Tarefa;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 

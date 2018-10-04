@@ -1,4 +1,4 @@
-package com.aulamobile.aulamobile;
+package com.aulamobile.tela;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -6,7 +6,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.List;
+import com.aulamobile.aulamobile.R;
+import com.aulamobile.aulamobile.RetrofitUtil;
+import com.aulamobile.service.CepService;
+import com.aulamobile.entity.Cep;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,7 +24,7 @@ public class CepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cep);
 
-        service = RetrofitUtil.build().create(CepService.class);
+        service = RetrofitUtil.buildCep().create(CepService.class);
 
         Button btBuscaCep = findViewById(R.id.btBuscaCep);
         btBuscaCep.setOnClickListener(new View.OnClickListener() {
@@ -38,7 +41,12 @@ public class CepActivity extends AppCompatActivity {
                     public void onResponse(Call<Cep> call, Response<Cep> response) {
                         //   Toast.makeText(getApplicationContext(), response.body().getBairro(), Toast.LENGTH_LONG).show();
                         Cep cep = response.body();
-                        setCep(cep);
+                        if(cep != null){
+                            setCep(cep);
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),"CEP INVALIDO", Toast.LENGTH_LONG).show();
+                        }
                     }
 
                     @Override
@@ -55,8 +63,6 @@ public class CepActivity extends AppCompatActivity {
     }
 
     private void setCep(Cep cep) {
-        Toast.makeText(getApplicationContext(), cep.getBairro(), Toast.LENGTH_SHORT).show();
-
         EditText campoRua  = findViewById(R.id.etLogradouro);
         campoRua.setText(cep.getLogradouro());
 

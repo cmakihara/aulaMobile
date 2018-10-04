@@ -1,4 +1,4 @@
-package com.aulamobile.aulamobile;
+package com.aulamobile.tela;
 
 
 import android.content.Intent;
@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.aulamobile.aulamobile.LoginUtil;
+import com.aulamobile.aulamobile.R;
 
 public class LoginActivity extends AppCompatActivity{
 
@@ -25,7 +28,7 @@ public class LoginActivity extends AppCompatActivity{
         this.etLogin    = this.findViewById(R.id.etLogin);
         this.etSenha = this.findViewById(R.id.etSenha);
 
-        String login =LoginUtil.get(this);
+        String login = LoginUtil.get(this);
         if(login != null){
             Toast.makeText(getApplicationContext(),
                     "Ultimo usuario " + login, Toast.LENGTH_SHORT).show();

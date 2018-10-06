@@ -57,38 +57,38 @@
             />
     </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:paddingTop="30px"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:paddingLeft="30px"-->
-        <!--android:paddingRight="30px"-->
-        <!--&gt;-->
-        <!--<Button-->
-            <!--android:id="@+id/btProfissional"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="profissionais"-->
-            <!--android:background="@color/colorPrimary"-->
-            <!--android:textColor="#eaedf2"-->
-            <!--/>-->
-    <!--</LinearLayout>-->
+    <LinearLayout
+        android:paddingTop="30px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        >
+        <Button
+            android:id="@+id/btCnpj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Busca Cnpj"
+            android:background="@color/colorPrimary"
+            android:textColor="#eaedf2"
+            />
+    </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:paddingTop="30px"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:paddingLeft="30px"-->
-        <!--android:paddingRight="30px"-->
-        <!--&gt;-->
-        <!--<Button-->
-            <!--android:id="@+id/btProcedimento"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Procedimentos"-->
-            <!--android:background="@color/colorPrimary"-->
-            <!--android:textColor="#eaedf2"-->
-            <!--/>-->
-    <!--</LinearLayout>-->
+    <LinearLayout
+        android:paddingTop="30px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        >
+        <Button
+            android:id="@+id/btFeriado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Busca Feriado"
+            android:background="@color/colorPrimary"
+            android:textColor="#eaedf2"
+            />
+    </LinearLayout>
 
 </LinearLayout>

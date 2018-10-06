@@ -35,11 +35,13 @@ public class CepActivity extends AppCompatActivity {
                 cep.setCep(campoCep.getText().toString());
                 Call<Cep> callBack = service.cepDados(cep.getCep());
 
+
                 callBack.enqueue(new Callback<Cep>() {
 
                     @Override
                     public void onResponse(Call<Cep> call, Response<Cep> response) {
-                        //   Toast.makeText(getApplicationContext(), response.body().getBairro(), Toast.LENGTH_LONG).show();
+                           Toast.makeText(getApplicationContext(), response.body().getBairro(), Toast.LENGTH_LONG).show();
+
                         Cep cep = response.body();
                         if(cep != null){
                             setCep(cep);

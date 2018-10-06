@@ -6,17 +6,32 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitUtil  {
 
-    public static Retrofit buildCep(){
+    public static Retrofit buildCep() {
         return new Retrofit.Builder().baseUrl("https://viacep.com.br/ws/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 
-    public static Retrofit buildGitHub(){
+    public static Retrofit buildGitHub() {
         return new Retrofit.Builder().baseUrl("https://api.github.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
+
+    public static Retrofit buildCnpj() {
+        return new Retrofit.Builder().baseUrl("http://www.receitaws.com.br/v1/cnpj/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+    }
+
+    public static Retrofit buildFeriado() {
+        return new Retrofit.Builder().baseUrl("https://api.calendario.com.br/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+    }
+
 }
